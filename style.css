@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 33, 40);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.item img {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.list {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.list .item {
+  transition: .5s;
+  filter: brightness(0);
+}
+
+.list .item:hover {
+  filter: brightness(1);
+  transform: translateZ(200px);
+}
+
+.list .item:hover + .item {
+  filter: brightness(.6);
+  transform: translateZ(150px) rotateY(40deg);
+}
+
+.list .item:hover + .item + .item {
+  filter: brightness(.4);
+  transform: translateZ(70px) rotateY(20deg);
+}
+
+.list .item:hover + .item + .item + .item {
+  filter: brightness(.2);
+  transform: translateZ(30px) rotateY(10deg);
+}
+
+.list .item:has(+ .item:hover) {
+  filter: brightness(.6);
+  transform: translateZ(150px) rotateY(-40deg);
+}
+
+.list .item:has(+ .item + .item:hover) {
+  filter: brightness(.4);
+  transform: translateZ(70px) rotateY(-20deg);
+}
+
+.list .item:has(+ .item + .item + .item:hover) {
+  filter: brightness(.2);
+  transform: translateZ(30px) rotateY(-10deg);
+}
